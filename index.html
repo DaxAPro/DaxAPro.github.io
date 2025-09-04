@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MR.QR Scanner - Fast & Simple QR Scanner App</title>
+    <style>
+        :root {
+            --primary-color: #00E676; --background-color: #0d0d0d;
+            --text-color: #e0e0e0; --card-color: #1a1a1a;
+            --font-main: 'Poppins', sans-serif; --font-heading: 'Orbitron', sans-serif;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Poppins:wght@400;600&display=swap');
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--background-color); color: var(--text-color);
+            font-family: var(--font-main); margin: 0; padding: 0; overflow-x: hidden;
+        }
+        .section { padding: 80px 20px; text-align: center; }
+        .hero {
+            display: flex; flex-direction: column; justify-content: center;
+            align-items: center; min-height: 95vh;
+            background: radial-gradient(circle, #1a1a1a 0%, #0d0d0d 70%);
+        }
+        .container { max-width: 960px; margin: 0 auto; }
+        .app-logo {
+            width: 140px; height: 140px; border-radius: 28px;
+            margin-bottom: 25px; box-shadow: 0 0 35px rgba(0, 230, 118, 0.3);
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        h1 {
+            font-family: var(--font-heading); font-size: 3.2rem; letter-spacing: 3px;
+            color: var(--text-color); margin: 10px 0;
+            text-shadow: 0 0 20px rgba(0, 230, 118, 0.4);
+        }
+        .hero p { font-size: 1.2rem; max-width: 600px; color: #b0b0b0; line-height: 1.7; }
+        .play-store-button {
+            display: inline-block; background: linear-gradient(45deg, #00E676, #00c767);
+            color: #000; padding: 16px 40px; border-radius: 50px; text-decoration: none;
+            font-weight: 600; margin-top: 35px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 20px rgba(0, 230, 118, 0.3);
+        }
+        .play-store-button:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(0, 230, 118, 0.5); }
+        h2 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 50px; }
+        .features-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px; text-align: left;
+        }
+        .feature-card {
+            background-color: var(--card-color); padding: 30px; border-radius: 12px;
+            border: 1px solid #282828; transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .feature-card:hover { transform: translateY(-8px); border-color: var(--primary-color); }
+        .feature-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 15px; }
+        .feature-card h3 {
+            font-family: var(--font-heading); font-size: 1.5rem;
+            margin-bottom: 10px; color: #fff;
+        }
+        footer {
+            background-color: #000; padding: 25px; font-size: 0.9rem;
+            color: #555; text-align: center;
+        }
+        footer a { color: #888; text-decoration: none; }
+        footer a:hover { color: var(--primary-color); }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <section class="section hero">
+        <img src="https://i.imgur.com/nz3LKT6.png" alt="MR.QR Scanner App Logo" class="app-logo">
+        <h1>MR.QR SCANNER</h1>
+        <p>The ultimate tool for all your QR code needs. Scan, generate, and customize with a fast, stylish, and user-friendly interface. Available now on Google Play.</p>
+        <a href="https://play.google.com/store/apps/details?id=com.yonal.mrqrscanner" class="play-store-button" target="_blank">GET IT ON Google Play</a>
+    </section>
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="fade-in">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in"><i class="fas fa-qrcode"></i><h3>Fast & Accurate Scanning</h3><p>Instantly scan any QR or Barcode using your camera, or pick an image from your gallery. Flashlight supported for dark environments.</p></div>
+                <div class="feature-card fade-in"><i class="fas fa-cogs"></i><h3>Powerful Generator</h3><p>Create custom QR codes for URLs, text, Wi-Fi details, contacts, and much more. Customize colors and styles to match your brand.</p></div>
+                <div class="feature-card fade-in"><i class="fas fa-paint-brush"></i><h3>Full Customization</h3><p>Make the app truly yours. Personalize your experience with a full range of theme colors and a selection of stylish fonts.</p></div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; 2025 Yonal Solutions. All Rights Reserved. | <a href="https://telegra.ph/MRQR-Scanner-Privacy-Policy-07-06" target="_blank">Privacy Policy</a></p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+            const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                });
+            }, appearOptions);
+            faders.forEach(fader => appearOnScroll.observe(fader));
+        });
+    </script>
+</body>
+</html>
